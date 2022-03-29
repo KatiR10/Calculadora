@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState} from 'react'
+import { useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 
 export default function App() {
@@ -10,42 +10,42 @@ export default function App() {
   const [lastNumber, setLastNumber] = useState("")
 
 
-  function calculator(){
+  function calculator() {
     const splitNumbers = currentNumber.split(' ')
     const fistNumber = parseFloat(splitNumbers[0])
     const lastNumber = parseFloat(splitNumbers[2])
     const operator = splitNumbers[1]
 
     // Faz ação referente tecla pressionada
-    switch(operator){
+    switch (operator) {
       case '+':
         setCurrentNumber((fistNumber + lastNumber).toString())
         return
-      case '-': 
+      case '-':
         setCurrentNumber((fistNumber - lastNumber).toString())
         return
       case 'x':
         setCurrentNumber((fistNumber * lastNumber).toString())
         return
-      case '/': 
+      case '/':
         setCurrentNumber((fistNumber / lastNumber).toString())
         return
     }
   }
 
-  function handleInput(buttonPressed){
+  function handleInput(buttonPressed) {
     console.log(buttonPressed) // Mostra no Console a tecla pressionada
-    if(buttonPressed === '+' | buttonPressed === "-" | buttonPressed === "x" | buttonPressed === "/" ){
+    if (buttonPressed === '+' | buttonPressed === "-" | buttonPressed === "x" | buttonPressed === "/") {
       setCurrentNumber(currentNumber + " " + buttonPressed + " ")
       return
     }
-    switch(buttonPressed){
+    switch (buttonPressed) {
       case 'DEL':
         setCurrentNumber(currentNumber.substring(0, (currentNumber.length - 1)))
         return
       case 'LIMPAR': // Limpa todo o conteúdo
-        setLastNumber("") 
-        setCurrentNumber("") 
+        setLastNumber("")
+        setCurrentNumber("")
         return
       case '=':
         setLastNumber(currentNumber + " = ")
@@ -71,15 +71,15 @@ export default function App() {
       {/* Area onde os botões são exibidos*/}
       <View style={styles.buttons}>
 
-        {buttons.map((button) => 
+        {buttons.map((button) =>
           button === '=' ? // Mapeamento do botão =
-        <TouchableOpacity onPress={() => handleInput(button)} key={button} style={[styles.button, {backgroundColor: '#3dd0e3'}]}>
-          <Text style={[styles.textButton, {color: "white", fontSize: 30}]}>{button}</Text>
-        </TouchableOpacity>
-          : // Mapeamento dos outros botões
-          <TouchableOpacity onPress={() => handleInput(button)} key={button} style={styles.button}>
-            <Text style={[styles.textButton, {color: typeof(button) === 'number' ? 'black': '#0093a6'}]}>{button}</Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleInput(button)} key={button} style={[styles.button, { backgroundColor: '#282169' }]}>
+              <Text style={[styles.textButton, { color: "white", fontSize: 30 }]}>{button}</Text>
+            </TouchableOpacity>
+            : // Mapeamento dos outros botões
+            <TouchableOpacity onPress={() => handleInput(button)} key={button} style={styles.button}>
+              <Text style={[styles.textButton, { color: typeof (button) === 'number' ? 'white' : '#ffffff' }]}>{button}</Text>
+            </TouchableOpacity>
         )}
       </View>
     </View>
@@ -94,17 +94,17 @@ const styles = StyleSheet.create({
   results: {
     flex: 2,
     justifyContent: "center",
-    backgroundColor: "#f5f5f5"
+    backgroundColor: "#282169"
   },
   resultText: {
-    color: "#282F38",
+    color: "white",
     fontSize: 32,
     fontWeight: "bold",
     padding: 12,
     textAlign: "right"
   },
-  historyText:{
-    color: "#7c7c7c",
+  historyText: {
+    color: "#808080",
     fontSize: 20,
     marginRight: 10,
     alignSelf: 'flex-end',
@@ -114,15 +114,15 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   button: {
-    backgroundColor: 'white',
+    backgroundColor: '#191970',
     alignItems: 'center',
     justifyContent: 'center',
-    minWidth: 90, 
+    minWidth: 90,
     minHeight: 90,
     flex: 2,
   },
   textButton: {
-    color: "#7c7c7c",
+    color: "white",
     fontSize: 20,
-  } 
+  }
 });
